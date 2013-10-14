@@ -20,7 +20,7 @@ class MoviesController < ApplicationController
         session[:sort] = "release_date"
         @movies = Movie.find_all_by_rating(session[:ratings].keys, :order => "release_date")
       else
-        @movies = Movie.find_all_by_rating(session[:ratings].keys)
+        @movies = Movie.find_all_by_rating(session[:ratings].keys, :order => session[:sort])
       end
 
     else
@@ -32,7 +32,7 @@ class MoviesController < ApplicationController
         session[:sort] = "release_date"
         @movies = Movie.find_all_by_rating(params[:ratings].keys, :order => "release_date")
       else
-        @movies = Movie.find_all_by_rating(params[:ratings].keys)
+        @movies = Movie.find_all_by_rating(params[:ratings].keys, :order => session[:sort])
       end
     end
   end
